@@ -1,0 +1,11 @@
+***validación formulario***
+"En los formularios de la aplicación se deberá hacer uso de variedad de inputs 
+( 5 tipos diferentes como mínimo), por ejemplo, fecha, texto, número, checkbox, 
+email, radio button, range, etc. Todos los campos deberán ser validados desde el front end."
+
+***documentación***
+"Se dotará a la aplicación con la funcionalidad para generar la documentación del código automáticamente."
+
+
+TODO list:
+- pág singin para  preferencias en el que incluye inputs: fecha, checkbox, radio button o range.
