@@ -8,4 +8,12 @@ email, radio button, range, etc. Todos los campos deberán ser validados desde e
 
 
 TODO list:
-- pág singin para  preferencias en el que incluye inputs: fecha, checkbox, radio button o range.
+- Hacer el html de las páginas básicas
+- pág singup para  preferencias en el que incluye inputs: fecha, checkbox, radio button o range.
+- CRUD en favoritos (profile) 
+- hacer el js de las páginas básicas + validaciones.
+- En contactForm imprimir por pantalla un resumen + mensaje "gracias por compartir su opinión"
+- Pulir detalles de páginas básicas.
+- Incluir una pág home.
+- Añadir botones: continuar con cuenta google y facebook en formularios. ejemplo:https://www.pinterest.es/
+

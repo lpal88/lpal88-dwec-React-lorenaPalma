@@ -494,12 +494,13 @@
 
 .logForm {
   width: 30%;
-  height: 70vh;
+  height: 70%;
   border: 2px solid #1e6091;
   border-radius: 10%;
   margin: 100px auto;
   padding: 20px;
   display: block;
+  text-align:center;
 }
 
 @media (max-width: 821px) {

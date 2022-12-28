@@ -40,7 +40,7 @@ const LoginForm = () => {
 
             <section className="logForm__option">
                 <a href="#" className="option__log">LOG IN</a>
-{/*                 <Link to='/' className="option__sing">SING UP</Link> */}
+                <Link to='/singup' className="option__sing">SING UP</Link>
             </section>
 
             <section className="logForm__input">
