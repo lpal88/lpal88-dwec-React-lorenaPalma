@@ -8,6 +8,7 @@ const Search = () => {
     <>
     <Header />
     <SearchBar />
+    <section className='search__result'></section>
     <Footer />
     </>
   )
