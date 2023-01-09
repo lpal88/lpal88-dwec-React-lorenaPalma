@@ -176,7 +176,7 @@
 .searchBar__box {
   width: 650px;
   height: 80px;
-  z-index: -1;
+  z-index: 0;
   border: 3px solid #000;
   justify-content: flex-end;
   display: flex;
