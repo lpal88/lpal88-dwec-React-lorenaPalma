@@ -3,10 +3,8 @@ import React,  { useState } from 'react'
 const SearchBar = () => {
 
   const [author, setAuthor] = useState("")
-
-  const form = document.querySelector('#section__searchBar')
-  const result = document.querySelector('#searchBar__result')
-
+  const [dataAuthor, setDataAuthor] = useState([])
+  const [dataQuotes, setDataQuotes] = useState([])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -19,40 +17,35 @@ const SearchBar = () => {
     setAuthor(e.target.value)
   }
 
-
-  
   function searchAuthor() {
         APIcall(author)
   }
   
   function APIcall(author) {
     console.log("hola")
-    let url = `https://api.quotable.io/search/authors?query=${author}`;
-  
+    let urlAuthor = `https://api.quotable.io/search/authors?query=${author}`;
+    let urlQuotes = `https://api.quotable.io/quotes?author=${author}`;
   
     //mostrarSpinner()
-    fetch(url)
+    fetch(urlAuthor)
       .then(respuesta =>
         respuesta.json()
       )
       .then(data => 
         //limpiarHTML()
-        printResult(data)
+        setDataAuthor(data.results[0])
+      )
+      fetch(urlQuotes)
+      .then(respuesta =>
+        respuesta.json()
+      )
+      .then(data => 
+        //limpiarHTML()
+        setDataQuotes(data.results)
       )
   }
-
-  function printResult(data) {
-    console.log(data.results[0])
-    const {name, description, bio} = data.results[0]
-    console.log(name)
-    const authorName = document.createElement('P')
-    authorName.innerHTML = `El autor ${name}`
-
-    result.appendChild(authorName)
-
-  }
-
-
+  const {name, description, bio} = dataAuthor
+  console.log(dataQuotes)
 
 
   return (
@@ -65,7 +58,18 @@ const SearchBar = () => {
         onChange={e => handleChange(e)}
         value={author} />
       <input type='submit' className="searchBar__image" />
-    </form><div className='searchBar__result'></div></>
+    </form>
+    <div className='searchBar__result'>
+      <p>{name}</p>
+      <p>{description}</p>
+      <p>{bio}</p>
+      <ul>{
+        dataQuotes.map(quote =>
+          ( <li key={quote._id}>{quote.content}</li> ) 
+        )
+      }
+      </ul>
+    </div></>
   )
 }
 
