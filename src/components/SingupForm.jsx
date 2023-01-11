@@ -91,23 +91,20 @@ const SingupForm = () => {
         <input 
         name='todoInterest'
         type="radio" 
-        className="input__box" 
         onChange={e =>handleChange(e)}
         value="Filosofía" />
         <label for="Historia">Historia</label>
         <input 
         name='todoInterest'
         type="radio" 
-        className="input__box" 
         onChange={e =>handleChange(e)}
         value="Historia" />
         <label for="Psicología">Psicología</label>
         <input 
         name='todoInterest'
         type="radio" 
-        className="input__box" 
         onChange={e =>handleChange(e)}
-        value="Psicología" />
+        value="Psicología" /><br></br>
 
         <input 
         className="form-check-input" //pendiente cambiar estilo
@@ -115,7 +112,7 @@ const SingupForm = () => {
         name="todoCheck"
         checked={todo.todoCheck}
         onChange={e => handleChange(e)}/>
-        <label for="todoCheck">Acepto los Términos del servicio; Abre una nueva pestaña de Pinterest y confirmas que has leído nuestra Política de privacidad; Abre una nueva pestaña. Aviso de recogida de datos; Abre una nueva pestaña.
+        <label for="todoCheck">Acepto los Términos del servicio; Abre una nueva pestaña y confirmas que has leído nuestra Política de privacidad; Abre una nueva pestaña. Aviso de recogida de datos.
         </label>
         
         <button type="submit" className="logForm__submit">{/* <a href="profile.html">LOG IN</a> */}</button>

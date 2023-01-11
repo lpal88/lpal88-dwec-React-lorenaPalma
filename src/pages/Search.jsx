@@ -8,6 +8,7 @@ const Search = () => {
     <>
     <Header />
     <SearchBar />
+    <a href="https://zenquotes.io/" target="_blank">ZenQuotes API</a>
     <Footer />
     </>
   )

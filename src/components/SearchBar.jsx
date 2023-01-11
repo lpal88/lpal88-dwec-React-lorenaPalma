@@ -22,7 +22,6 @@ const SearchBar = () => {
   }
   
   function APIcall(author) {
-    console.log("hola")
     let urlAuthor = `https://api.quotable.io/search/authors?query=${author}`;
     let urlQuotes = `https://api.quotable.io/quotes?author=${author}`;
   
@@ -50,22 +49,30 @@ const SearchBar = () => {
 
   return (
     <><form className="section__searchBar" onSubmit={handleSubmit} action="#" method="POST">
+      <h1>Busca tus autorxs favoritxs</h1>
       <input
         className="searchBar__box"
         name='search'
         type="text"
-        placeholder="Buscar"
+        placeholder="Aristotle, Confucius..."
         onChange={e => handleChange(e)}
         value={author} />
-      <input type='submit' className="searchBar__image" />
+      <button type='submit' className="searchBar__link">Buscar</button>
+
+      <select name="topics" className='searchBar__options'>
+        <option value="1" selected>Elige un tema</option>
+        <option value="2">Freedom</option> 
+        <option value="3">Happiness</option>
+      </select>
+      
     </form>
     <div className='searchBar__result'>
-      <p>{name}</p>
-      <p>{description}</p>
+      <h1>{name}</h1>
+      <h2>{description}</h2>
       <p>{bio}</p>
       <ul>{
         dataQuotes.map(quote =>
-          ( <li key={quote._id}>{quote.content}</li> ) 
+          ( <li key={quote._id} className="authorMain__qoute">{quote.content}</li> ) 
         )
       }
       </ul>
