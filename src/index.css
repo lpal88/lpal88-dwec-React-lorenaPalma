@@ -185,12 +185,28 @@ h1, h2{
   width: 40%;
   text-align: center;
 }
+
+.searchBar__lenghtQuote {
+  width: 60%;
+}
 .searchBar__result {
   width: 70%;
   margin: 0 auto;
   padding: 50px;
   padding-inline-start: 0;
   
+}
+
+.searchResult__button {
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+  border: none;
+  background-color: white;
+}
+.result__img {
+  width: 20px;
+  height: 20px;
 }
 
 ul {
@@ -646,9 +662,11 @@ input[type=radio] {
 
 .authorMain__qoute {
   text-align: center;
-  padding: 10px;
+  padding: 30px;
   font-family: thabit;
   box-shadow: -3px 3px 10px #d3d3d3;
+  display:flex;
+  justify-content: space-between;
 }
 
 .profile {

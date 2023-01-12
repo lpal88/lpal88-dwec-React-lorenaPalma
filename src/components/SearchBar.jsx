@@ -9,10 +9,11 @@ const SearchBar = () => {
 
   const [inputs, setInputs] = useState(inputsInitialState)
 
+
   const [dataAuthor, setDataAuthor] = useState([])
   const [dataQuotes, setDataQuotes] = useState([])
 
-
+  const [iconFavourite, setIconFavourite] = useState("/corazon.svg")
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -21,11 +22,18 @@ const SearchBar = () => {
 }
   
   const handleChange = e => {
-    // console.log(e.target.value)
+    const {name, value} = e.target 
     setInputs({
       ...inputs,
-      [e.target.name]: e.target.value
+      [name]: value
     })
+
+  }
+
+
+  function handleClick(e, id) {
+    e.preventDefault()
+    if (id == quote._id) {setIconFavourite("../public/favorito.svg")}
 
   }
 
@@ -37,14 +45,11 @@ const SearchBar = () => {
     let urlAuthor = `https://api.quotable.io/search/authors?query=${inputs.author}`;
     let urlQuotes = `https://api.quotable.io/quotes?author=${inputs.author}`;
 
-  
-    //mostrarSpinner()
     fetch(urlAuthor)
       .then(respuesta =>
         respuesta.json()
       )
       .then(data => 
-        //limpiarHTML()
         setDataAuthor(data.results[0])
       )
       fetch(urlQuotes)
@@ -52,16 +57,15 @@ const SearchBar = () => {
         respuesta.json()
       )
       .then(data => 
-        //limpiarHTML()
         setDataQuotes(data.results)
       )
   
   }
-
   const {name, description, bio} = dataAuthor
 
- 
 
+
+    
 
   return (
     <><form className="section__searchBar" onSubmit={handleSubmit} action="#" method="POST">
@@ -86,27 +90,35 @@ const SearchBar = () => {
         <option value="wisdom">Sabiduría</option>
         <option value="freedom">Libertad</option> 
         <option value="friendship">Amistad</option>
-      </select>
-      
+      </select><br></br>
+
     </form>
+
     <div className='searchBar__result'>
       <h1>{name}</h1>
       <h2>{description}</h2>
       <p>{bio}</p>
-      <ul>{
-          inputs.tag === 'all'  
+      <ul>
+        {
+        inputs.tag === 'all'
           ? dataQuotes.map(quote => 
-            ( <li key={quote._id} className="authorMain__qoute">{quote.content}</li> ) 
+            (  <li key={quote._id} className="authorMain__qoute">{quote.content}
+            <button onClick={e => handleClick(e,id)} className='searchResult__button'><img src={iconFavourite} className='result__img'alt="" />
+            </button>
+            </li> )
             )
-          : dataQuotes
-            .filter(quote => 
-              (quote.tags.some(tag => 
-                tag === inputs.tag)
-              ))
+          : dataQuotes.filter(quote => 
+            (quote.tags.some(tag => 
+              tag === inputs.tag)))
             .map(quote => 
-                ( <li key={quote._id} className="authorMain__qoute">{quote.content}</li> ) 
+              (  <li key={quote._id} className="authorMain__qoute">{quote.content}
+              <button onClick={handleClick} className='searchResult__button'><img src={iconFavourite} className='result__img'alt="" />
+              </button>
+              </li>
+               )
               )
-      }
+        }
+     
       </ul>
     </div></>
   )
