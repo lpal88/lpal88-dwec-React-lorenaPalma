@@ -13,7 +13,7 @@ const SearchBar = () => {
   const [dataAuthor, setDataAuthor] = useState([])
   const [dataQuotes, setDataQuotes] = useState([])
 
-  const [iconFavourite, setIconFavourite] = useState("/corazon.svg")
+  let iconFavourite = "../corazon.svg"
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -30,10 +30,13 @@ const SearchBar = () => {
 
   }
 
-
-  function handleClick(e, id) {
+  function handleClick(e) {
     e.preventDefault()
-    if (id == quote._id) {setIconFavourite("../public/favorito.svg")}
+    console.log(e.target.id)
+
+      e.target.src= "../public/favorito.svg"
+    
+    
 
   }
 
@@ -62,10 +65,6 @@ const SearchBar = () => {
   
   }
   const {name, description, bio} = dataAuthor
-
-
-
-    
 
   return (
     <><form className="section__searchBar" onSubmit={handleSubmit} action="#" method="POST">
@@ -103,7 +102,7 @@ const SearchBar = () => {
         inputs.tag === 'all'
           ? dataQuotes.map(quote => 
             (  <li key={quote._id} className="authorMain__qoute">{quote.content}
-            <button onClick={e => handleClick(e,id)} className='searchResult__button'><img src={iconFavourite} className='result__img'alt="" />
+            <button onClick={e => handleClick(e)} className='searchResult__button'><img id={quote._id} src={iconFavourite} className='result__img'alt="" />
             </button>
             </li> )
             )
