@@ -7,7 +7,7 @@ const Contact = () => {
   return (
     <>
     <Header />
-    <h1 class="contact__title">CUÉNTANOS TU OPINIÓN</h1>
+    <h1 className='contact__title'>CUÉNTANOS TU OPINIÓN</h1>
     <ContactForm />
     <Footer />
     </>

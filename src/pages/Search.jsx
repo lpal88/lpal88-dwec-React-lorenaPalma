@@ -6,10 +6,8 @@ import SearchBar from '../components/SearchBar'
 const Search = () => {
   return (
     <>
-    <Header />
     <SearchBar />
     <a href="https://zenquotes.io/" target="_blank">ZenQuotes API</a>
-    <Footer />
     </>
   )
 }
