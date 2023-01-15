@@ -12,7 +12,10 @@ const LayoutPrivate = () => {
     const {user, setUser} = useContext(UserContext)
 
     useEffect(() => {if(!user) {
-        navigate("/login")}
+        navigate("/login")}else {
+          navigate("/profile")
+        }
+        
     }, [user] )
 
     

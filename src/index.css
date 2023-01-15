@@ -175,7 +175,7 @@
   flex-wrap: wrap;
 }
 
-h1, h2{
+h1, h2, .result__list{
   font-family: Amatic SC;
   text-align: center;
 }
@@ -213,6 +213,18 @@ h1, h2{
 
 ul {
   padding-inline-start: 0px;
+}
+
+.results__pagination {
+  margin:0 auto;
+}
+
+.result__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  font-size: 2rem;
+
 }
 
 .searchBar__box {
@@ -672,7 +684,8 @@ input[type=radio] {
 }
 
 .profile {
-  width: 30%;
+  width: 40%;
+  height: 400px;
   justify-content: space-between;
   align-items: center;
   margin: 40px auto;

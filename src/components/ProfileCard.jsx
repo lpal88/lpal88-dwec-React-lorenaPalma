@@ -3,19 +3,16 @@ import React from 'react'
 const ProfileCard = () => {
   return (
     <>
-    <section class="profile">
-        <article class="profile__me">
-            <img class="me__image" /* src="assets/images/imageprofile.jpeg" */ alt="" />
-            <span class="me__name">{/* David */}</span>
+    <section className="profile">
+        <article className="profile__me">
+            <img className="me__image" src="../public/usuaria.svg" alt="" />
+            <span className="me__name">David</span>
         </article>
-        <article class="profile__places">
-            <a href="#" class="places__authors">Mis autorxs</a>
-            <a href="#" class="places__topics">Mis temáticas</a>
-            <a href="#" class="places__quotes">Mis citas</a>
+        <article className="profile__places">
+            <a href="#" className="places__authors">Mis autorxs</a>
+            <a href="#" className="places__topics">Mis temáticas</a>
+            <a href="#" className="places__quotes">Mis citas</a>
         </article>
-    </section>
-    <section class="action">
-        <img class="action__modify" src="assets/images/iconModify.png" alt="" />
     </section>
     </>
   )

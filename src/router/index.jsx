@@ -7,7 +7,6 @@ import Singup from "../pages/Singup";
 import NotFound from "../pages/NotFound";
 import LayoutPublic from "../layouts/LayoutPublic"
 import LayoutPrivate from "../layouts/LayoutPrivate"
-import Dashboard from "../pages/Dashboard";
 
 export const router = createBrowserRouter(
     [
@@ -18,7 +17,7 @@ export const router = createBrowserRouter(
             children: [
                 {
                     path: "/",
-                    element: <Login />,
+                    element: <Search />,
                 },
                 {
                     path: "/contact",
@@ -33,12 +32,12 @@ export const router = createBrowserRouter(
                     element: <Search  />,
                 },
                 {  
-                    path: "/dashboard",
+                    path: "/profile",
                     element: <LayoutPrivate />,
                     children:[
                         {
                             index: true,
-                            element: <Dashboard />
+                            element: <Profile />
                         }
                     ]
                 } ,
