@@ -20,14 +20,16 @@ const Navbar = () => {
         <ul className="menu__list"> 
         {
           user && (
-          <><><NavLink to='/dashboard' className='list__link'>
-              Dashboard
-            </NavLink>
+          <><>
               <NavLink to="/profile" className="list__link">
                 Mi espacio
-              </NavLink></><><NavLink to='/contact' className='list__link'>
+              </NavLink></><>
+              <NavLink to='/contact' className='list__link'>
                 Contacto
-              </NavLink><NavLink to="/search" className="list__link">Autorxs</NavLink></></>
+              </NavLink>
+              <NavLink to="/search" className="list__link">
+                Autorxs
+              </NavLink></></>
         )
         }
         {
@@ -39,12 +41,13 @@ const Navbar = () => {
         }
         {
           user ? (
+            <NavLink to="/login" className="list__link--buttonStyle">LOG IN</NavLink>
+          ) : (
             <button className='list__link--buttonStyle' onClick={(()=> cerrarSesion())}>
               Cerrar Sesión
             </button>
-          ) : (
-            <NavLink to="/" className="list__link--buttonStyle">LOG IN</NavLink>
           )
+          
         }
             
 

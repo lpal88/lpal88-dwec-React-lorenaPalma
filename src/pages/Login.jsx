@@ -25,7 +25,7 @@ setDatos(
   }
   const procesarDatos = () => {
     console.log("validando datos")
-    console.log("handleChange");
+
     if (esRegistro) {
       registrar()
     } else {
@@ -36,7 +36,7 @@ setDatos(
   const registrar = () => {
     console.log("registrando")
     setUser(true)
-    navigate("/dashboard")
+    navigate("/profile")
 
   }
 
@@ -44,15 +44,15 @@ setDatos(
     console.log("logeando")
     setUser(true)
     setDatos(datosIntialState)
-    navigate("/dashboard")
+    navigate("/profile")
 
   }
 
   return (
-    <div className='mt-5'>
-      <h3 className='text-center'>
-      {esRegistro ? "Registro" : "Login"}
-      </h3>
+    <div className='mt-5 login'>
+      <h1 className='text-center'>
+      {esRegistro ? navigate("/singup") : "Login"}
+      </h1>
       <hr />
       <div className='row justify-content-center'>
         <div className='col-12 col-sm-8 col-md-6 col-xl-4 '>
@@ -71,11 +71,11 @@ setDatos(
             placeholder='Introduce el password' 
             onChange={e => handleChange(e)}
             value={datos.pass}/>
-            <button className='btn btn-dark w-100' 
+            <button className='btn btn-dark w-100 color' 
             type='submit'>
               {esRegistro ? "Registrar" : "Login"} 
             </button>
-            <button className='btn btn-sm btn-info w-100 mb-2' 
+            <button className='btn btn-sm btn-info w-100 mb-2 color2' 
             onClick={()=>setEsRegistro(!esRegistro)}
             type='button'>
               {esRegistro ? "Ya tengo cuenta" : "¿No tienes cuenta?"}

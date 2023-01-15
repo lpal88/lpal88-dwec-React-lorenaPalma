@@ -175,7 +175,7 @@
   flex-wrap: wrap;
 }
 
-h1, h2, .result__list{
+h1, h2, .result__list, .login h1{
   font-family: Amatic SC;
   text-align: center;
 }
@@ -576,6 +576,16 @@ ul {
   font-family: Amatic SC;
   font-size: 2rem;
 }
+.login {
+  height: 400px;
+}
+
+.color {
+  background-color: black;
+}
+.color2 {
+  background-color: gray;
+}
 
 @media (max-width: 720px) {
   .option__log, .option__sing, .logForm__submit {
@@ -809,7 +819,12 @@ input[type=radio] {
   color: gray;
   transition: all .5s linear;
 }
-
+.list__link--buttonStyle {
+  color: #000;
+  background-color: #b5e48c;
+  border: 2px solid #000;
+  padding: 10px 20px;
+}
 .list__link--buttonStyle a {
   color: #000;
   background-color: #b5e48c;

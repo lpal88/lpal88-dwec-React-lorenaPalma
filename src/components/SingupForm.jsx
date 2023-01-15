@@ -41,10 +41,7 @@ const SingupForm = () => {
   return (
     
     <form onSubmit={handleSubmit} className="logForm">
-      <section className="logForm__option">
-        <Link to="/" className="option__sing">LOG IN</Link>
-        <a href='#' className="option__log">SING UP</a>
-      </section>
+      <h1>Sing Up</h1>
       <section className="logForm__input">
         <input 
         name='todoName'
@@ -115,7 +112,7 @@ const SingupForm = () => {
         <label for="todoCheck">Acepto los Términos del servicio; Abre una nueva pestaña y confirmas que has leído nuestra Política de privacidad; Abre una nueva pestaña. Aviso de recogida de datos.
         </label>
         
-        <button type="submit" className="logForm__submit">{/* <a href="profile.html">LOG IN</a> */}</button>
+        <button type="submit" className="logForm__submit">Registrar</button>
       </section>
     </form>
     

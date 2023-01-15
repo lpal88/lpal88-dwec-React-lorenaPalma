@@ -6,7 +6,7 @@ import { useFetch } from './hooks/UseFetch'
 const SearchBar = () => {
 
   const quotesSavedInitialState = JSON.parse(localStorage.getItem('quotes')) || []
-  const [quote, setQuote] = useState("")
+  const [quote, setQuote] = useState({})
   const [quotes, setQuotes] = useState(quotesSavedInitialState)
 
   useEffect(() => {
@@ -48,12 +48,12 @@ const SearchBar = () => {
     e.preventDefault()
     console.log(dataQuotes)
     e.target.src= "../public/favorito.svg"
-    dataQuotes.find(quote => quote._id === e.target.id ? setQuote(quote.content) : console.log("noexiste"))
+    dataQuotes.find(quote => quote._id === e.target.id ? setQuote(quote) : console.log("noexiste"))
     setQuotes([...quotes, quote])
     console.log(quotes) 
 
   }
-  
+
   function searchAuthor() {
         APIcall(inputs)
   }

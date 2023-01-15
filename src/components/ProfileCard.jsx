@@ -5,7 +5,7 @@ const ProfileCard = () => {
     <>
     <section className="profile">
         <article className="profile__me">
-            <img className="me__image" src="../public/usuaria.svg" alt="" />
+            <img className="me__image" src="/usuaria.svg" alt="" />
             <span className="me__name">David</span>
         </article>
         <article className="profile__places">

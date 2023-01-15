@@ -31,6 +31,10 @@ export const router = createBrowserRouter(
                     path: "/search",
                     element: <Search  />,
                 },
+                {
+                    path: "/singup",
+                    element: <Singup  />,
+                },
                 {  
                     path: "/profile",
                     element: <LayoutPrivate />,

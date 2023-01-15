@@ -6,9 +6,7 @@ import Footer from '../components/Footer'
 const Singup = () => {
   return (
     <>
-    <Header />
     <SingupForm />
-    <Footer />
     </>
   )
 }
