@@ -188,6 +188,11 @@ h1, h2, .result__list, .login h1{
   width: 40%;
   text-align: center;
 }
+.keyWord {
+  width: 20%;
+  margin-left: 20px;
+  text-align: center;
+}
 
 .searchBar__lenghtQuote {
   width: 60%;

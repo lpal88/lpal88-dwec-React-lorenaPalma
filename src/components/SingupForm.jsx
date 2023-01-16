@@ -1,10 +1,9 @@
 import React,  { useState, useEffect } from 'react'
 
-
-
-
+/* A function that returns a form. */
 const SingupForm = () => {
 
+ /* The initial state of the form. */
   const initialState = {
       name: "",
       email: "", 
@@ -15,24 +14,28 @@ const SingupForm = () => {
       check: false
     }
   
+/* Setting the initial state of the application. */
   const dataStoragedInitialState = JSON.parse(localStorage.getItem('dataStoraged')) || []
-
   const [personalData, setPersonalData] = useState(initialState)
   const [dataStoraged, setDataStoraged] = useState(dataStoragedInitialState)
-
   const [error, setError] = useState(false)
 
+/* Saving the data in the local storage. */
   useEffect(() => {
     localStorage.setItem('dataStoraged', JSON.stringify(dataStoraged))
   }, [dataStoraged])
   //console.log(personalData)
 
 
+/**
+ * A function that is called when the form is submitted. It prevents the default action of the form,
+ * which is to reload the page. It then checks if the form is valid. If it is not valid, it sets the
+ * error state to true. If the form is valid, sets the dataStoraged state to the personalData state and
+ * it sets the personalData state to the initialState.
+ */
   const handleSubmit = (e) => {
     e.preventDefault()
     const {name, email, pass, passConf, check, brth, interest} = personalData
-
-    //El nombre debe estar formado sólo por letras.
     const regExpName = /^[a-zA-Z]{2,50}$/ 
     const regExpPass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,12}$/
     // console.log(regExpName.test(name))
@@ -58,6 +61,10 @@ const SingupForm = () => {
 
 
 
+/**
+ * The function takes an event as an argument, and then uses the event's target to set the state of the
+ * personalData object.
+ */
   const handleChange = e => {
     const {name, value, checked, type} = e.target 
     setPersonalData({

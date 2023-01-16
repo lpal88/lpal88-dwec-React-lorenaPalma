@@ -1,7 +1,12 @@
 import  { React, useState, useEffect, useCallback } from "react";
 
 
+/**
+ * UseFetch is a custom hook that fetches data from an API and returns the data, a loading state, and
+ * an error state
+ */
 export const useFetch = (url) => {
+
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

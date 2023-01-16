@@ -1,10 +1,9 @@
 import React,  { useState, useEffect } from 'react'
 import { useFetch } from './hooks/UseFetch'
 
-
-
 const SearchBar = () => {
-
+  
+/* The initial state of the quote. */
   const quoteSavedInitialState = {
     author : "",
     authorSlug : "",
@@ -21,6 +20,7 @@ const SearchBar = () => {
   const [quotes, setQuotes] = useState(quotesSavedInitialState)
 
 
+/* Saving the quotes in the local storage. */
   useEffect(() => {
     localStorage.setItem('quotes', JSON.stringify(quotes))
   }, [quotes])
@@ -31,10 +31,17 @@ const SearchBar = () => {
     keyWord: '',
   }
   const [inputs, setInputs] = useState(inputsInitialState)
-
+  
+  const authorInitialState = {
+    name : '',
+    description : '',
+    bio : '',
+  }
+  const [author, setAuthor] = useState(authorInitialState)
   const [dataAuthor, setDataAuthor] = useState([])
   const [dataQuotes, setDataQuotes] = useState([])
 
+  /* A hook that is fetching the data from the API. */
   const { data, loading, error } = useFetch(`https://api.quotable.io/authors?limit=150`
   );
 
@@ -43,11 +50,19 @@ const SearchBar = () => {
 
   let iconFavourite = "../corazon.svg"
 
+/**
+ * The handleSubmit function is called when the form is submitted. It prevents the default action of
+ * the form, which is to reload the page, and then calls the searchAuthor function
+ */
   const handleSubmit = (e) => {
     e.preventDefault()
     searchAuthor()
 }
 
+ /**
+  * The handleChange function is a React hook that takes in an event as an argument and sets the state
+  * of the inputs object to the value of the event target
+  */
   const handleChange = e => {
     const {name, value} = e.target 
     setInputs({
@@ -56,6 +71,7 @@ const SearchBar = () => {
     })
     //console.log(inputs.keyWord)
   }
+
 
   function handleClick(e) {
     e.preventDefault()
@@ -67,10 +83,22 @@ const SearchBar = () => {
 
   }
 
+  const handleClickAuthor = e => {
+    e.preventDefault()
+    const {name, value, id} = e.target 
+    setAuthor({   
+      name : id})
+      
+  }
+  //console.log(author.name)
+
   function searchAuthor() {
         APIcall(inputs)
   }
   
+/**
+ * It makes an API call to the Quotable API and returns the author and quotes.
+ */
   function APIcall(inputs) {
     let urlAuthor = `https://api.quotable.io/search/authors?query=${inputs.author}`;
     let urlQuotes = `https://api.quotable.io/quotes?author=${inputs.author}`;
@@ -114,15 +142,26 @@ const SearchBar = () => {
       value={inputs.tag}>
         <option value="all">Cualquier tema</option>
         <option value="change">Cambio</option> 
+        <option value="love">Amor</option>
+        <option value="friendship">Amistad</option>  
         <option value="wisdom">Sabiduría</option>
         <option value="freedom">Libertad</option> 
-        <option value="friendship">Amistad</option>
+        <option value="sports">Deportes</option>
+        <option value="business">Negocios</option>
+        <option value="future">Futuro</option>
+        <option value="education">Educación</option>
+        <option value="family">Familia</option>
+        <option value="history">Historia</option>
+        <option value="life">Vida</option>
+        <option value="success">Éxito</option>
+        <option value="technology">Tecnología</option>
+        
       </select>
     
     <input onChange={e =>handleChange(e)}
     name="keyWord"
     type="text" 
-    placeholder='palabra clave...' 
+    placeholder='Palabra clave...' 
     className='keyWord'
     value={inputs.keyWord}/>
     </form>
@@ -134,15 +173,30 @@ const SearchBar = () => {
       <ul className="result__list">
         {
           inputs.author === ''
-            ? data.map(author => <li key={author._id}>{author.name}</li>)
+            ? (data.map(author => 
+            <li 
+            onClick={e => handleClickAuthor(e)}
+            id={author.name} 
+            key={author._id}>{author.name}</li>))
             : null
         }
       </ul>
+      <div>
+      {
+        author.name != ''
+        ? data.map(author => (<><h1>{author.name}</h1><h2>{author.description}</h2><p>{author.bio}</p></>))
+        : null
+      }
+      </div>
       
+     {/* Filtering the quotes by tag and by keyWord. */}
       <ul>
         {
         inputs.tag === 'all'
-          ? dataQuotes.map(quote => 
+          ? dataQuotes
+          .filter(quote =>
+            quote.content.toLowerCase().includes(inputs.keyWord.toLowerCase()))
+          .map(quote => 
             (  <li key={quote._id} className="authorMain__qoute">{quote.content}
             <button onClick={e => handleClick(e)} className='searchResult__button'><img id={quote._id} src={iconFavourite} className='result__img'alt="" />
             </button>
