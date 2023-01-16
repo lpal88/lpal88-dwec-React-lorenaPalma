@@ -179,6 +179,7 @@ h1, h2, .result__list, .login h1{
   font-family: Amatic SC;
   text-align: center;
 }
+
 .section__searchBar h1 {
   width: 100%;
   text-align: center;
@@ -577,7 +578,11 @@ ul {
   font-size: 2rem;
 }
 .login {
-  height: 400px;
+  height: 500px;
+}
+.login h1 {
+  font-size: 3rem;
+  margin: 50px;
 }
 
 .color {
@@ -694,11 +699,11 @@ input[type=radio] {
 }
 
 .profile {
-  width: 40%;
+  width: 30%;
   height: 400px;
   justify-content: space-between;
   align-items: center;
-  margin: 40px auto;
+  margin-left:  40px 150px;
   padding: 20px;
   display: flex;
   top: 100px;
@@ -711,12 +716,24 @@ input[type=radio] {
     display: block;
   }
 }
+.profile__storage {
+  width: 30%;
+  display:inline;
+}
+.profile__all{
+  display:inline;
+}
 
 .profile__me {
   height: 30vh;
   width: 48%;
   display: block;
   top: 20px;
+}
+.authorMain__name{
+  background-color:#1a759f;
+  color: white;
+  font-weight: 700;
 }
 
 .me__image {
@@ -736,10 +753,18 @@ input[type=radio] {
 .profile__places {
   width: 48%;
 }
-
-.places__authors, .places__topics, .places__quotes {
+.places__button { 
+  border: 2px solid #000;
+  padding: 10px 20px;
+  width: 150px;
   font-family: Amatic SC;
-  font-size: 3rem;
+  font-size: 1.6rem;
+  margin-top: 20px;
+}
+
+ .places__topics, .places__quotes {
+  font-family: Amatic SC;
+  font-size: 1.6rem;
   display: block;
 }
 
@@ -819,18 +844,23 @@ input[type=radio] {
   color: gray;
   transition: all .5s linear;
 }
-.list__link--buttonStyle {
+.list__link--buttonStyle  {
   color: #000;
   background-color: #b5e48c;
   border: 2px solid #000;
   padding: 10px 20px;
 }
+.list__link--buttonStyle--2 {
+  background-color: #52b69a;
+}
+
 .list__link--buttonStyle a {
   color: #000;
   background-color: #b5e48c;
   border: 2px solid #000;
   padding: 10px 20px;
   transition: all .2s linear;
+
 }
 
 .list__link--buttonStyle:hover {

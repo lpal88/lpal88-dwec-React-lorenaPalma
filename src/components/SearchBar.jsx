@@ -5,8 +5,19 @@ import { useFetch } from './hooks/UseFetch'
 
 const SearchBar = () => {
 
+  const quoteSavedInitialState = {
+    author : "",
+    authorSlug : "",
+    content : "",
+    dateAdded: "",
+    dateModified: "",
+    length: 0,
+    tags: [],
+     _id : "",   
+  }
+
   const quotesSavedInitialState = JSON.parse(localStorage.getItem('quotes')) || []
-  const [quote, setQuote] = useState({})
+  const [quote, setQuote] = useState(quoteSavedInitialState)
   const [quotes, setQuotes] = useState(quotesSavedInitialState)
 
   useEffect(() => {

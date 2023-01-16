@@ -53,29 +53,28 @@ setDatos(
       <h1 className='text-center'>
       {esRegistro ? navigate("/singup") : "Login"}
       </h1>
-      <hr />
-      <div className='row justify-content-center'>
+      <div className='row justify-content-center login__section'>
         <div className='col-12 col-sm-8 col-md-6 col-xl-4 '>
           <form onSubmit={procesarDatos}>
             <input 
             name='email' 
             type="email" 
             className='form-control mb-2' 
-            placeholder='Introduce el email' 
+            placeholder='Email' 
             onChange={e => handleChange(e)}
             value={datos.email}/>
             <input 
             name='pass' 
             type="password" 
             className='form-control mb-2' 
-            placeholder='Introduce el password' 
+            placeholder='Contraseña' 
             onChange={e => handleChange(e)}
             value={datos.pass}/>
-            <button className='btn btn-dark w-100 color' 
+            <button className='list__link--buttonStyle   w-100 ' 
             type='submit'>
               {esRegistro ? "Registrar" : "Login"} 
             </button>
-            <button className='btn btn-sm btn-info w-100 mb-2 color2' 
+            <button className='list__link--buttonStyle--2  w-100 ' 
             onClick={()=>setEsRegistro(!esRegistro)}
             type='button'>
               {esRegistro ? "Ya tengo cuenta" : "¿No tienes cuenta?"}

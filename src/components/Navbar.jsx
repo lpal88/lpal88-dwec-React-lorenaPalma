@@ -21,15 +21,16 @@ const Navbar = () => {
         {
           user && (
           <><>
-              <NavLink to="/profile" className="list__link">
-                Mi espacio
-              </NavLink></><>
-              <NavLink to='/contact' className='list__link'>
-                Contacto
-              </NavLink>
-              <NavLink to="/search" className="list__link">
-                Autorxs
-              </NavLink></></>
+            <NavLink to="/search" className="list__link">
+              Home
+            </NavLink>
+            <NavLink to="/profile" className="list__link">
+              Mi espacio
+            </NavLink></><>
+            <NavLink to='/contact' className='list__link'>
+              Contacto
+            </NavLink>
+            </></>
         )
         }
         {

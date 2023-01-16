@@ -8,7 +8,6 @@ const Profile = () => {
   return (
     <>
     <ProfileCard />
-    <ProfileStorage />
     </>
   )
 }

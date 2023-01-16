@@ -1,104 +1,119 @@
 import React,  { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-//cambios de funcionalidad para los inputs nuevos
+
 const SingupForm = () => {
+
   const initialState = {
-      todoNombre: "",
-      todoEmail: "", 
-      todoPass: "", 
-      todoPassConf: "",
-      todoBrth: null,
-      todoInterest: null,
-      todoCheck: false
+      name: "",
+      email: "", 
+      pass: "", 
+      passConf: "",
+      brth: "",
+      interest: null,
+      check: false
     }
   
-  const [todo, setTodo] = useState(initialState)
+  const [personalData, setPersonalData] = useState(initialState)
   const [error, setError] = useState(false)
-
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const {todoEmail, todoPass, todoPassConf} = todo
+    const {name, email, pass, passConf, check, brth, interest} = personalData
 
-    if (!todoEmail.trim() || !todoPass.trim() || todoPass.trim() != todoPassConf.trim()) {
-        setError(true);
-        console.log(error)
-        return
-    }
-    console.log("Enviando objeto datos al server!!!!")
+    //El nombre debe estar formado sólo por letras.
+    const regExpName = /^[a-zA-Z]$/ 
+    const regExpPass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,12}$/
+    if (
+      !regExpName.test(name) ||
+      !regExpPass.test(pass) ||
+      !email.trim() || 
+      pass.trim() != passConf.trim() ||
+      !check || 
+      !brth.trim() ||
+      interest === null
+      ) {
+      setError(true);
+      console.log(error)
+      return
+    } 
+
+    console.log(personalData)
     setError(false)
-    setTodo(initialState)
+    setPersonalData(initialState)
   }
 
   const handleChange = e => {
-    setTodo({
-        ...todo,
-        [e.target.name]: e.target.value
+    const {name, value, checked, type} = e.target 
+    setPersonalData({
+        ...personalData,
+        [name]: type === 'checkbox' ? true : value
     })
   }
 
   return (
-    
+    <>
+
     <form onSubmit={handleSubmit} className="logForm">
       <h1>Sing Up</h1>
       <section className="logForm__input">
         <input 
-        name='todoName'
+        name='name'
         type="text" 
         className="input__box" 
         placeholder="Nombre"
         onChange={e =>handleChange(e)}
-        value={todo.todoName} />
+        value={personalData.name} />
 
         <input 
-        name='todoEmail'
+        name='email'
         type="email" 
         className="input__box" 
         placeholder="Correo electrónico"
         onChange={e =>handleChange(e)}
-        value={todo.todoEmail} />
+        value={personalData.email} />
 
         <input 
-        name='todoPass'
+        name='pass'
         type="text" 
         className="input__box" 
         placeholder="Contraseña"
         onChange={e =>handleChange(e)}
-        value={todo.todoPass} />
+        value={personalData.pass} />
 
         <input 
-        name='todoPassConf'
+        name='passConf'
         type="text" 
         className="input__box" 
         placeholder="Confirmar contraseña" 
         onChange={e =>handleChange(e)}
-        value={todo.todoPassConf}/>
+        value={personalData.passConf}/>
 
-        <label for="todoBrth">Fecha de Nacimiento:</label>
+        <label htmlFor="brth">Fecha de Nacimiento:</label>
         <input 
-        name='todoBrth'
+        name='brth'
         type="date" 
         className="input__box" 
         onChange={e =>handleChange(e)}
-        value={todo.todoBrth} />
+        value={personalData.brth} />
         
-        <p>Intereses:</p>
-        <label for="Filosofía">Filosofía</label>
+        <p>Área de Interés:</p>
+        <label htmlFor="Filosofía">Filosofía</label>
         <input 
-        name='todoInterest'
+        name='interest'
         type="radio" 
         onChange={e =>handleChange(e)}
         value="Filosofía" />
-        <label for="Historia">Historia</label>
+        <label htmlFor="Historia">Historia</label>
         <input 
-        name='todoInterest'
+        name='interest'
         type="radio" 
         onChange={e =>handleChange(e)}
         value="Historia" />
-        <label for="Psicología">Psicología</label>
+        <label htmlFor="Psicología">Psicología</label>
         <input 
-        name='todoInterest'
+        name='interest'
         type="radio" 
         onChange={e =>handleChange(e)}
         value="Psicología" /><br></br>
@@ -106,17 +121,37 @@ const SingupForm = () => {
         <input 
         className="form-check-input" //pendiente cambiar estilo
         type="checkbox" 
-        name="todoCheck"
-        checked={todo.todoCheck}
+        name="check"
+        checked={personalData.check}
         onChange={e => handleChange(e)}/>
-        <label for="todoCheck">Acepto los Términos del servicio; Abre una nueva pestaña y confirmas que has leído nuestra Política de privacidad; Abre una nueva pestaña. Aviso de recogida de datos.
+        <label htmlFor="check">Acepto los Términos del servicio; Abre una nueva pestaña y confirmas que has leído nuestra Política de privacidad; Abre una nueva pestaña. Aviso de recogida de datos.
         </label>
         
         <button type="submit" className="logForm__submit">Registrar</button>
       </section>
     </form>
-    
+    {
+            error 
+            ? <div className="alert alert-danger">
+              Rellene todos los campos y asegúrese de que los datos tienen el formato correcto.<br></br>
+              La contraseña debe tener:<br />
+              8-12 caracteres,
+              al menos 1 letra mayúscula y 1 minúscula,
+              algún dígito,
+              algún caracter especial
+              y no tener espacios vacíos</div> 
+            : null         
+    }
+
+    { 
+      setTimeout( () => {
+        setError(false)
+        },15000)
+    }
+          
+    </>
   )
+
 }
 
 export default SingupForm
