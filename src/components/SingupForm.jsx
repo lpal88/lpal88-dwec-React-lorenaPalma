@@ -1,5 +1,6 @@
-import React,  { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React,  { useState, useEffect } from 'react'
+
+
 
 
 const SingupForm = () => {
@@ -14,17 +15,28 @@ const SingupForm = () => {
       check: false
     }
   
+  const dataStoragedInitialState = JSON.parse(localStorage.getItem('dataStoraged')) || []
+
   const [personalData, setPersonalData] = useState(initialState)
+  const [dataStoraged, setDataStoraged] = useState(dataStoragedInitialState)
+
   const [error, setError] = useState(false)
-  const [errorMessage, setErrorMessage] = useState('')
+
+  useEffect(() => {
+    localStorage.setItem('dataStoraged', JSON.stringify(dataStoraged))
+  }, [dataStoraged])
+  //console.log(personalData)
+
 
   const handleSubmit = (e) => {
     e.preventDefault()
     const {name, email, pass, passConf, check, brth, interest} = personalData
 
     //El nombre debe estar formado sólo por letras.
-    const regExpName = /^[a-zA-Z]$/ 
+    const regExpName = /^[a-zA-Z]{2,50}$/ 
     const regExpPass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,12}$/
+    // console.log(regExpName.test(name))
+    // console.log(regExpPass.test(pass))
     if (
       !regExpName.test(name) ||
       !regExpPass.test(pass) ||
@@ -35,14 +47,16 @@ const SingupForm = () => {
       interest === null
       ) {
       setError(true);
-      console.log(error)
+      setDataStoraged(personalData)
+      console.log(personalData)
+      console.log(dataStoraged)
       return
     } 
-
-    console.log(personalData)
-    setError(false)
+    
     setPersonalData(initialState)
   }
+
+
 
   const handleChange = e => {
     const {name, value, checked, type} = e.target 
@@ -50,6 +64,7 @@ const SingupForm = () => {
         ...personalData,
         [name]: type === 'checkbox' ? true : value
     })
+    console.log(personalData);
   }
 
   return (
@@ -76,7 +91,7 @@ const SingupForm = () => {
 
         <input 
         name='pass'
-        type="text" 
+        type="password" 
         className="input__box" 
         placeholder="Contraseña"
         onChange={e =>handleChange(e)}
@@ -84,7 +99,7 @@ const SingupForm = () => {
 
         <input 
         name='passConf'
-        type="text" 
+        type="password"
         className="input__box" 
         placeholder="Confirmar contraseña" 
         onChange={e =>handleChange(e)}
@@ -132,21 +147,23 @@ const SingupForm = () => {
     </form>
     {
             error 
-            ? <div className="alert alert-danger">
+            ? (<div className="alert alert-danger">
               Rellene todos los campos y asegúrese de que los datos tienen el formato correcto.<br></br>
               La contraseña debe tener:<br />
               8-12 caracteres,
               al menos 1 letra mayúscula y 1 minúscula,
               algún dígito,
               algún caracter especial
-              y no tener espacios vacíos</div> 
+              y no tener espacios vacíos</div>, 
+              setTimeout( () => {
+                setError(false)
+              },10000))
             : null         
     }
 
     { 
-      setTimeout( () => {
-        setError(false)
-        },15000)
+   
+   
     }
           
     </>

@@ -20,6 +20,7 @@ const SearchBar = () => {
   const [quote, setQuote] = useState(quoteSavedInitialState)
   const [quotes, setQuotes] = useState(quotesSavedInitialState)
 
+
   useEffect(() => {
     localStorage.setItem('quotes', JSON.stringify(quotes))
   }, [quotes])
@@ -27,6 +28,7 @@ const SearchBar = () => {
   const inputsInitialState = {
     author: '',
     tag: 'all',
+    keyWord: '',
   }
   const [inputs, setInputs] = useState(inputsInitialState)
 
@@ -52,7 +54,7 @@ const SearchBar = () => {
       ...inputs,
       [name]: value
     })
-
+    //console.log(inputs.keyWord)
   }
 
   function handleClick(e) {
@@ -115,8 +117,14 @@ const SearchBar = () => {
         <option value="wisdom">Sabiduría</option>
         <option value="freedom">Libertad</option> 
         <option value="friendship">Amistad</option>
-      </select><br></br>
-
+      </select>
+    
+    <input onChange={e =>handleChange(e)}
+    name="keyWord"
+    type="text" 
+    placeholder='palabra clave...' 
+    className='keyWord'
+    value={inputs.keyWord}/>
     </form>
 
     <div className='searchBar__result'>
@@ -126,9 +134,10 @@ const SearchBar = () => {
       <ul className="result__list">
         {
           inputs.author === ''
-        ? data.map(author => <li key={author._id}>{author.name}</li>)
-        : console.log("lista ocultada")
-      }</ul>
+            ? data.map(author => <li key={author._id}>{author.name}</li>)
+            : null
+        }
+      </ul>
       
       <ul>
         {
@@ -137,11 +146,14 @@ const SearchBar = () => {
             (  <li key={quote._id} className="authorMain__qoute">{quote.content}
             <button onClick={e => handleClick(e)} className='searchResult__button'><img id={quote._id} src={iconFavourite} className='result__img'alt="" />
             </button>
-            </li> )
+            </li>)
             )
-          : dataQuotes.filter(quote => 
+          :  
+            dataQuotes.filter(quote => 
             (quote.tags.some(tag => 
               tag === inputs.tag)))
+            .filter(quote =>
+              quote.content.toLowerCase().includes(inputs.keyWord.toLowerCase()))
             .map(quote => 
               (  <li key={quote._id} className="authorMain__qoute">{quote.content}
               <button onClick={handleClick} className='searchResult__button'><img src={iconFavourite} className='result__img'alt="" />
@@ -150,8 +162,8 @@ const SearchBar = () => {
                )
               )
         }
-     
-      </ul>
+        </ul>
+
 
     </div></>
   )
