@@ -22,7 +22,7 @@ const ProfileCard = () => {
         </article>
     </section>
     {isShown && (
-         <ProfileStorage className='profile__storage'/>
+         <ProfileStorage />
 
       )}
     </div>

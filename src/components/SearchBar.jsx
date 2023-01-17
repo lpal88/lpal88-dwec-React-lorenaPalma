@@ -15,14 +15,14 @@ const SearchBar = () => {
      _id : "",   
   }
 
-  const quotesSavedInitialState = JSON.parse(localStorage.getItem('quotes')) || []
+  const quotesSavedInitialState = JSON.parse(sessionStorage.getItem('quotes')) || []
   const [quote, setQuote] = useState(quoteSavedInitialState)
   const [quotes, setQuotes] = useState(quotesSavedInitialState)
 
 
 /* Saving the quotes in the local storage. */
   useEffect(() => {
-    localStorage.setItem('quotes', JSON.stringify(quotes))
+    sessionStorage.setItem('quotes', JSON.stringify(quotes))
   }, [quotes])
 
   const inputsInitialState = {
@@ -31,13 +31,7 @@ const SearchBar = () => {
     keyWord: '',
   }
   const [inputs, setInputs] = useState(inputsInitialState)
-  
-  const authorInitialState = {
-    name : '',
-    description : '',
-    bio : '',
-  }
-  const [author, setAuthor] = useState(authorInitialState)
+
   const [dataAuthor, setDataAuthor] = useState([])
   const [dataQuotes, setDataQuotes] = useState([])
 
@@ -73,27 +67,32 @@ const SearchBar = () => {
   }
 
 
+/**
+ * The function handleClick is triggered when the user clicks on the heart icon. The function prevents
+ * the default action of the event, then it looks for the quote with the same id as the id of the icon
+ * that was clicked. If the quote is not in the array of quotes, it is added to the array
+ */
   function handleClick(e) {
     e.preventDefault()
-    console.log(dataQuotes)
+    //console.log(dataQuotes)
     e.target.src= "../public/favorito.svg"
-    dataQuotes.find(quote => quote._id === e.target.id ? setQuote(quote) : console.log("noexiste"))
-    setQuotes([...quotes, quote])
+    dataQuotes.find(quote => quote._id === e.target.id 
+      ? !quotes.find(quote => quote._id === e.target.id)
+          ? (setQuote(quote), setQuotes([...quotes, quote]))
+          : null
+      : null)
+    
     console.log(quotes) 
-
   }
 
-  const handleClickAuthor = e => {
-    e.preventDefault()
-    const {name, value, id} = e.target 
-    setAuthor({   
-      name : id})
-      
-  }
-  //console.log(author.name)
-
-  function searchAuthor() {
-        APIcall(inputs)
+/**
+ * If the author input is not empty, then call the APIcall function with the inputs object as an
+ * argument
+ */
+  const searchAuthor = () => {
+    inputs.author.trim() != ''
+      ? APIcall(inputs)
+      : null
   }
   
 /**
@@ -181,14 +180,7 @@ const SearchBar = () => {
             : null
         }
       </ul>
-      <div>
-      {
-        author.name != ''
-        ? data.map(author => (<><h1>{author.name}</h1><h2>{author.description}</h2><p>{author.bio}</p></>))
-        : null
-      }
-      </div>
-      
+
      {/* Filtering the quotes by tag and by keyWord. */}
       <ul>
         {
