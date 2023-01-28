@@ -363,6 +363,7 @@ ul {
   box-shadow: -3px 3px 10px #d3d3d3;
 }
 
+
 .sectionError__title--404 {
   opacity: .5;
   text-align: center;
@@ -480,6 +481,13 @@ ul {
     font-size: 6vw;
     transition: all .5s;
   }
+}
+.form-check-input {
+  margin: 5px;
+}
+span.terms{
+  color: #1e6091;
+  text-decoration: underline;
 }
 
 .form__label {
@@ -872,6 +880,9 @@ input[type=radio] {
 .list__link--buttonStyle:hover {
   background: #52b69a;
   transition: all 2s linear;
+}
+.errorMessage {
+  color: red;
 }
 
 .list__link--on a {

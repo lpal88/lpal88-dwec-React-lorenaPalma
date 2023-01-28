@@ -13,6 +13,8 @@ const Navbar = () => {
     console.log("cerrando...")
     navigate("/login")
     setUser(null)
+    localStorage.clear();
+
   }
   return (
     <nav className="header__menu">
@@ -42,11 +44,11 @@ const Navbar = () => {
         }
         {
           user ? (
-            <NavLink to="/login" className="list__link--buttonStyle">LOG IN</NavLink>
-          ) : (
             <button className='list__link--buttonStyle' onClick={(()=> cerrarSesion())}>
-              Cerrar Sesión
-            </button>
+            Cerrar Sesión
+          </button>
+          ) : (
+             <NavLink to="/login" className="list__link--buttonStyle">LOG IN</NavLink>
           )
           
         }

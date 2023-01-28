@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useNavigate, Outlet } from 'react-router-dom'
-import { useUserContext } from '../context/UserContext'
+import { useUserContext } from '../contexts/userContext'
 
 
 const LayoutPrivate = () => {

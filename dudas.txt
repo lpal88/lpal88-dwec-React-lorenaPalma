@@ -23,3 +23,9 @@ contará con un filtro de búsqueda con opciones múltiples,
 es decir, permitirá al usuario filtrar por, al menos, 4 o 5 campos.
 
 
+WEBGRAFIA:
+https://react-hook-form.com/get-started (useForm hook)
+https://sweetalert2.github.io/#usage (alertas)
+https://regex101.com/ (testeo expresiones regulares)
+https://mailtrap.io/blog/validate-emails-in-react/ (validación email en react)
+https://www.npmjs.com/package/react-password-checklist (componente de react para validación de contraseña)
