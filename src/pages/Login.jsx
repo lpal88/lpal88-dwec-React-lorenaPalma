@@ -27,7 +27,7 @@ const Login = () => {
     setUser(true)
     setError(null)
     setUserData(userDataInitialState)
-    navigate('/profile')
+    navigate('/search')
   }
   
   const onSubmit = () => {
@@ -41,7 +41,7 @@ const Login = () => {
         text: 'You are log',
         icon: 'success',
         showConfirmButton : false,
-        timer: 5000,
+        timer: 3000,
       }),
       login())
     : (Swal.fire({
@@ -83,7 +83,7 @@ const Login = () => {
         <input 
         {...register("password", { required: true })} 
         aria-invalid={errors.password ? "true" : "false"}
-        type="text" className="input__box" placeholder="Password" 
+        type="password" className="input__box" placeholder="Password" 
         value={userData.password} 
         onChange={e => handleChange(e)}>
         </input>

@@ -9,13 +9,12 @@ const Navbar = () => {
 
   const navigate =  useNavigate()
 
-  const cerrarSesion = ()  => {
-    console.log("cerrando...")
-    navigate("/login")
+  const handleLogout = ()  => {
     setUser(null)
-    localStorage.clear();
+    navigate("/login")
 
   }
+
   return (
     <nav className="header__menu">
       
@@ -23,38 +22,23 @@ const Navbar = () => {
         {
           user && (
           <><>
-            <NavLink to="/search" className="list__link">
-              Home
-            </NavLink>
             <NavLink to="/profile" className="list__link">
-              Mi espacio
+              My profile
             </NavLink></><>
-            <NavLink to='/contact' className='list__link'>
-              Contacto
-            </NavLink>
             </></>
         )
         }
         {
-          user || (
-          <><NavLink to='/contact' className='list__link'>
-              Contacto
-            </NavLink><NavLink to="/search" className="list__link">Autorxs</NavLink></>
-          )
-        }
-        {
           user ? (
-            <button className='list__link--buttonStyle' onClick={(()=> cerrarSesion())}>
-            Cerrar Sesión
+            <button className='list__link--buttonStyle' onClick={(()=> handleLogout())}>
+            Log Out
           </button>
           ) : (
              <NavLink to="/login" className="list__link--buttonStyle">LOG IN</NavLink>
           )
           
         }
-            
-
-            
+           
         </ul>
     </nav>
   )
