@@ -11,3 +11,6 @@ import { createContext, useState } from "react";
         </UserContext.Provider>
     )
  }
+export default UserProvider
+
+export const useUserContext = () => useContext(UserContext)

@@ -6,11 +6,11 @@ import Footer from '../components/Footer'
 const LayoutPublic = () => {
   return (
 
-        <>
-        <Header />
-        <Outlet />
-        <Footer />
-        </>
+    <>
+    <Header />
+    <Outlet />
+    <Footer />
+    </>
 
   )
 }

@@ -44,9 +44,19 @@ export const router = createBrowserRouter(
                             element: <Profile />
                         }
                     ]
-                } ,
-            ]
+                },
+                {  
+                    path: "/profile",
+                    element: <LayoutPrivate />,
+                    children:[
+                        {
+                            index: true,
+                            element: <Profile />
+                        }
+                    ]
+                },
+
+            ],
         },
            
-    ]
-)
+    ])
