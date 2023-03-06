@@ -75,7 +75,7 @@ const SearchBar = () => {
   function handleClick(e) {
     e.preventDefault()
     //console.log(dataQuotes)
-    e.target.src= "../public/favorito.svg"
+    e.target.src= "/favorito.svg"
     dataQuotes.find(quote => quote._id === e.target.id 
       ? !quotes.find(quote => quote._id === e.target.id)
           ? (setQuote(quote), setQuotes([...quotes, quote]))

@@ -24,8 +24,10 @@ const SingupForm = () => {
     const onSubmit = () => {
         sessionStorage.setItem('email', personalData.email)
         sessionStorage.setItem('password', personalData.password)
+        sessionStorage.setItem('name', personalData.name)
+        const name = sessionStorage.getItem('name')
         Swal.fire({
-            title: 'Welcome!',
+            title: `Welcome! ${name}`,
             text: 'You are registered',
             icon: 'success',
             showConfirmButton : false,
